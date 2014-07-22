@@ -1,0 +1,11 @@
+# Ignore everything except code directories
+/*
+!/code_latex
+!/code_nlogit
+!/code_R
+!/Do_Files
+!README.md
+!.gitignore
+
+# Ignore all RData files
+*.RData
