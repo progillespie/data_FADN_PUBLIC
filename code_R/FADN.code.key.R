@@ -154,9 +154,39 @@ FADN.code.key[146,] <- c("SE632", "Single Area payment")
 FADN.code.key[147,] <- c("SE640", "Additional aid")
 FADN.code.key[148,] <- c("SE650", "Support_Art68")
 
+# These codes are available from a datawarehouse request form 
+FADN.code.key[149,] <- c("A24"   , "Country")
+FADN.code.key[150,] <- c("SYS04" , "Exchange rate")
+FADN.code.key[151,] <- c("SE110D", "Wheat Yield Denominator")
+FADN.code.key[152,] <- c("SE110N", "Wheat Yield Numerator")
+FADN.code.key[153,] <- c("SE115D", "Maize Yield Denominator")
+FADN.code.key[154,] <- c("SE115N", "Maize Yield Numerator")
+FADN.code.key[155,] <- c("SE120D", "Stocking Density Denominator")
+FADN.code.key[156,] <- c("SE120N", "Stocking Density Numerator")
+FADN.code.key[157,] <- c("SE125D", "Milk Yield Denominator")
+FADN.code.key[158,] <- c("SE125N", "Milk Yield Numerator")
+FADN.code.key[159,] <- c("SE132D", "Total Input")
+FADN.code.key[160,] <- c("SE132N", "Total Output")
+FADN.code.key[161,] <- c("SE136D", "Total Crops Yield Denominator")
+FADN.code.key[162,] <- c("SE136N", "Total Crops Yield Numerator")
+FADN.code.key[163,] <- c("SE207D", "Total Livestock Yield Denominator")
+FADN.code.key[164,] <- c("SE207N", "Total Livestock Yield Numerator")
+FADN.code.key[165,] <- c("SE284D", "Specific Crop Yield Denominator")
+FADN.code.key[166,] <- c("SE284N", "Specific Crop Yield Numerator")
+FADN.code.key[167,] <- c("SE309D", "Specific Livestock Yield Denominator")
+FADN.code.key[168,] <- c("SE309N", "Specific Livestock Yield Numerator")
+FADN.code.key[169,] <- c("SE425D", "FNVA Per AWU Denominator")
+FADN.code.key[170,] <- c("SE425N", "FNVA Per AWU Numerator")
+FADN.code.key[171,] <- c("SE430D", "FNVA Per FWU Denominator")
+FADN.code.key[172,] <- c("SE430N", "FNVA Per FWU Numerator")
+FADN.code.key[173,] <- c("SE532D", "Farm Total Capital")
+FADN.code.key[174,] <- c("SE532N", "Cash Flow")
+FADN.code.key[175,] <- c("SE620" , "Other Subsidies")
+FADN.code.key[176,] <- c("YEAR"  , "YEAR")
+
 rm(N)
 FADN.code.key <- data.table(FADN.code.key, key=c("code", "description"))
-View(FADN.code.key)
+#View(FADN.code.key)
 #---------------- Create FADN.code.key ------------------------------
 
 
@@ -170,6 +200,8 @@ FADNlookup <- function(code.or.desc, reverse=F){
   output <- FADN.code.key[code.or.desc][, description]
   output <- gsub("[[:punct:]]", "", output)
   output <- gsub(" ", ".", output)
+  output <- gsub("\\.{2}", ".", output)
+  output <- tolower(output)
   }
   
   if  (reverse==T){
